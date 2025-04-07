@@ -44,15 +44,16 @@ yarn dev
 
 Example of the client collections page, where users can view and manage their saved bookmarks or tab groups.
 
-![Client Collections](./assets/client-collection.png)
+<img src="./assets/client-collection.png" width="400">
 
 ### Extension settings
 
-The extension loaded in Brave browser.  
-![Extension - settings](./assets/ext-settings.png)
+The extension loaded in Brave browser.
+
+<img src="./assets/ext-settings.png" width="400">
 
 ### Extension - Bookmarks uploaded
 
 The extension allows users to upload bookmarks or tab groups directly from the browser. This feature is useful for quickly saving job postings without leaving the current page.
 
-![Extension - Bookamrks uploaded](./assets/ext-upload.png)
+<img src="./assets/ext-upload.png" width="400">
