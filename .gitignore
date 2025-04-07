@@ -221,6 +221,7 @@ public/uploads/*
 !public/uploads/.gitkeep
 .tsbuildinfo
 .eslintcache
+.next
 
 ############################
 # Node.js
@@ -259,6 +260,7 @@ coverage
 ############################
 
 .env
+.env.local
 license.txt
 exports
 .strapi

@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_search_term_sets",
+  "info": {
+    "displayName": "Term sets",
+    "icon": "brush",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "term_set": {
+      "type": "component",
+      "repeatable": true,
+      "component": "search.terms"
+    },
+    "operator": {
+      "type": "enumeration",
+      "enum": [
+        "None",
+        "OR",
+        "AND"
+      ],
+      "default": "None"
+    }
+  }
+}

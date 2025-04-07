@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_search_terms",
+  "info": {
+    "displayName": "Terms",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "negative": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "operator": {
+      "type": "enumeration",
+      "enum": [
+        "None",
+        "OR",
+        "AND"
+      ],
+      "required": true,
+      "default": "None"
+    },
+    "term": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::term.term"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "collections",
+  "info": {
+    "singularName": "collection",
+    "pluralName": "collections",
+    "displayName": "Collection",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "collection": {
+      "type": "string",
+      "default": "Collection",
+      "required": true,
+      "minLength": 1
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tag.tag"
+    },
+    "Terms": {
+      "type": "component",
+      "repeatable": true,
+      "component": "search.terms"
+    },
+    "range": {
+      "type": "enumeration",
+      "enum": [
+        "Any time",
+        "Past hour",
+        "Past 24 hours",
+        "Past week",
+        "Past 2 weeks",
+        "Past month",
+        "Past 2 months",
+        "Past 4 months",
+        "Past 6 months",
+        "Past year"
+      ],
+      "default": "Past week",
+      "required": true
+    },
+    "description": {
+      "type": "string"
+    },
+    "term_sets": {
+      "type": "component",
+      "repeatable": true,
+      "component": "search.term-sets"
+    }
+  }
+}

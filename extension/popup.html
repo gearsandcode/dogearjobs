@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    :root {
+      --primary: #4285f4;
+      --primary-hover: #3367d6;
+      --background: #ffffff;
+      --text: #333333;
+      --light-gray: #f5f5f5;
+      --border: #e0e0e0;
+      --success: #34a853;
+      --error: #ea4335;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 360px;
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      padding: 16px;
+      color: var(--text);
+      background: var(--background);
+    }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 16px;
+      color: var(--primary);
+    }
+
+    .file-section {
+      border-radius: 8px;
+      background: var(--light-gray);
+      padding: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    /* Custom file input styling */
+    .file-input-wrapper {
+      position: relative;
+      margin-bottom: 12px;
+    }
+
+    .file-input-wrapper input[type="file"] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .file-input-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      background-color: white;
+      border: 1px dashed var(--primary);
+      border-radius: 4px;
+      color: var(--primary);
+      transition: all 0.2s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .file-input-button:hover {
+      background-color: rgba(66, 133, 244, 0.05);
+    }
+
+    .file-input-button svg {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+    }
+
+    #file-name {
+      margin: 8px 0 12px;
+      font-size: 13px;
+      color: var(--text);
+      word-break: break-word;
+      display: none;
+      background-color: white;
+      padding: 5px 8px;
+      border-radius: 4px;
+      border-left: 3px solid var(--primary);
+    }
+
+    .file-info {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+
+    button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: background-color 0.2s, transform 0.1s;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    button svg {
+      margin-right: 8px;
+      width: 16px;
+      height: 16px;
+    }
+
+    button:hover {
+      background-color: var(--primary-hover);
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+
+    #status {
+      margin-top: 12px;
+      padding: 10px;
+      border-radius: 4px;
+      font-size: 13px;
+      display: none;
+      text-align: left;
+      transition: all 0.3s ease;
+    }
+
+    .status-loading {
+      background-color: var(--light-gray);
+      color: var(--text);
+      border-left: 3px solid var(--primary);
+    }
+
+    .status-success {
+      background-color: rgba(52, 168, 83, 0.1);
+      color: var(--success);
+      border-left: 3px solid var(--success);
+    }
+
+    .status-error {
+      background-color: rgba(234, 67, 53, 0.1);
+      color: var(--error);
+      border-left: 3px solid var(--error);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .logo svg {
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
+    }
+
+    .logo-text {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .bookmark-preview {
+      margin-top: 16px;
+      max-height: 150px;
+      overflow-y: auto;
+      background: white;
+      border-radius: 4px;
+      padding: 8px;
+      display: none;
+    }
+
+    .folder-item {
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .folder-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .folder-name {
+      font-weight: 500;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .bookmark-count {
+      background-color: var(--primary);
+      color: white;
+      border-radius: 12px;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-weight: normal;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#4285f4">
+      <path d="M19 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h4l3 3 3-3h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 16H5V4h14v14z"/>
+      <path d="M7 9h10v2H7zm0 4h5v2H7z"/>
+    </svg>
+    <span class="logo-text">DogEar</span>
+  </div>
+
+  <h2>Import Bookmarks as Tab Groups</h2>
+  
+  <div class="file-section">
+    <div class="file-input-wrapper">
+      <input type="file" id="bookmarkFile" accept=".html">
+      <div class="file-input-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#4285f4">
+          <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+        </svg>
+        Choose Bookmarks File
+      </div>
+    </div>
+    <div id="file-name"></div>
+    <p class="file-info">Select a bookmarks.html file exported from your browser</p>
+    
+    <button id="loadBookmarks" disabled>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19 4h-4V2h-6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V8h14v12z"/>
+        <path d="M7 10h10v2H7zm0 4h7v2H7z"/>
+      </svg>
+      Create Tab Groups
+    </button>
+    
+    <div id="status"></div>
+    <div id="bookmarkPreview" class="bookmark-preview"></div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
